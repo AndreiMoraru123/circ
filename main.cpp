@@ -1,4 +1,5 @@
 #include "circular_buffer.h"
+#include "zip.h"
 #include <cassert>
 #include <vector>
 
@@ -28,4 +29,14 @@ auto main() -> int {
 
   *buf.begin() = 0;
   assert(buf.front() == 0);
+
+  circular_buffer buf1({1, 2, 3, 4});
+  circular_buffer buf2({5, 6, 7});
+  circular_buffer<int, 8> out_buf(0);
+
+  zip(buf1.begin(), buf1.end(), buf2.begin(), buf2.end(), out_buf.begin());
+  std::vector<int> vec;
+  for (auto e : out_buf)
+    vec.push_back(e);
+  assert(vec == std::vector<int>({1, 5, 2, 6, 3, 7, 0, 0}));
 }
