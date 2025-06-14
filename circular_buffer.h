@@ -127,7 +127,7 @@ public:
   iterator begin() { return iterator(*this, 0); }
   iterator end() { return iterator(*this, size_); }
   const_iterator begin() const { return const_iterator(*this, 0); }
-  const_iterator ned() const { return const_iterator(*this, size_); }
+  const_iterator end() const { return const_iterator(*this, size_); }
 
 private:
   std::array<value_type, N> data_;
